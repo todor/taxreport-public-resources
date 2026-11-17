@@ -1,5 +1,5 @@
 {
   "minimum_supported_version": "0.0.0",
   "legacy_free_access_enabled": false,
-  "automation_enabled": true
+  "automation_enabled": false
 }
