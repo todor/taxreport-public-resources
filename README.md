@@ -1,40 +1,61 @@
-# taxreport.bg — Release Policy
+# taxreport.bg — Public Resources
 
-Remote release policy for the taxreport.bg Chrome extension.
+Public configuration files and legal documents for taxreport.bg products.
 
-The extension periodically retrieves `policy.json` to determine whether it can connect to the Bulgarian National Revenue Agency (NRA) portal.
+This repository hosts resources that must be publicly accessible without exposing the private application source code.
 
-## Policy
+## Products
 
-```json
-{
-  "minimum_supported_version": "1.0.0",
-  "legacy_free_access_enabled": true,
-  "automation_enabled": true
-}
-```
+### Chrome Extension
+
+Resources for the taxreport.bg browser extension, which assists users with completing tax declarations in the Bulgarian National Revenue Agency (NRA) portal.
+
+| File | Description |
+|---|---|
+| [policy.json](chrome-extension/policy.json) | Remote release and access policy |
+| [license.en.md](chrome-extension/license.en.md) | Software license — English |
+| [license.bg.md](chrome-extension/license.bg.md) | Software license — Bulgarian |
+| [privacy.en.md](chrome-extension/privacy.en.md) | Privacy policy — English |
+| [privacy.bg.md](chrome-extension/privacy.bg.md) | Privacy policy — Bulgarian |
+
+#### Remote release policy
+
+The extension periodically retrieves its remote policy to determine whether it can connect to the NRA portal.
+
+**Policy URL:**
+
+https://raw.githubusercontent.com/todor/taxreport-public-resources/main/chrome-extension/policy.json
+
+The policy contains the following fields:
 
 | Field | Description |
 |---|---|
-| `minimum_supported_version` | Minimum extension version allowed to connect. |
-| `legacy_free_access_enabled` | Whether free-only extension versions may connect. |
-| `automation_enabled` | Emergency switch to disable new connections. |
+| `minimum_supported_version` | Minimum extension version allowed to connect |
+| `legacy_free_access_enabled` | Whether extension versions without entitlement support may connect |
+| `automation_enabled` | Emergency switch to disable new connections |
 
-## Updating the policy
+The extension normally checks the policy every 24 hours and can use its last verified policy for up to 72 hours if retrieval temporarily fails.
 
-1. Edit `policy.json` on the `main` branch.
-2. Change the relevant field.
-3. Commit the changes.
-4. Verify the published file at:
+Changes take effect on subsequent connections after the updated policy has been retrieved. Existing connections are not interrupted.
 
-   `https://raw.githubusercontent.com/<OWNER>/taxreport-release-policy/main/policy.json`
+#### Updating the release policy
 
-The extension normally refreshes the policy every 24 hours and tolerates temporary retrieval failures for up to 72 hours using its last verified policy.
+1. Edit `chrome-extension/policy.json` on the `main` branch.
+2. Commit the changes.
+3. Verify the published JSON at the policy URL above.
 
-Changes affect new connections after the extension retrieves the updated policy. Existing connections are not interrupted.
+**Important:** Release-policy changes can affect whether installed extensions are permitted to operate. Review changes carefully before committing.
 
-## Licensing
+## Legal documents
 
-This repository contains release configuration, not the extension source code. Access to this repository does not grant a license to use, modify or redistribute the taxreport.bg extension.
+The English and Bulgarian versions of the license and privacy policy are maintained together.
 
-The extension's licensing terms are maintained separately.
+Changes to legal documents should be reviewed and synchronized with their corresponding versions in the private product repository.
+
+## Repository scope
+
+This repository contains publicly accessible configuration and legal documents. It does not contain the application source code.
+
+Access to this repository does not grant permission to use, modify, or redistribute proprietary taxreport.bg software beyond the rights expressly granted by its applicable license.
+
+Additional product resources may be added in separate directories as needed.
