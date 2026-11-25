@@ -1,0 +1,4 @@
+# OS and editor-specific local settings
+.DS_Store
+.vscode/
+.idea/
